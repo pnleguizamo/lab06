@@ -34,12 +34,13 @@ int originalButtonPressed(int inputList[]);
 int main(int argc, char *argv[])
 {
     srand(time(NULL)); /* This will ensure a random game each time. */
+    // srand(0);
     // triangle, circle, x_button, square;
     int masterTime = 2501;
     int nonStopTime = 80000;
     int nonStopMaster = 80000;
-    int tempNonStop = nonStopMaster +500;
-    int correctButton[4];
+    int tempNonStop = nonStopMaster+500;
+    int correctButton[4]={0,0,0,0};
     int inputButton[4];
     int tempInputList[4]={0,0,0,0};
     int count = 0;
@@ -55,10 +56,7 @@ int main(int argc, char *argv[])
 
     int random = 0;
 
-    correctButton[0] = 0;
-    correctButton[1] = 0;
-    correctButton[2] = 0;
-    correctButton[3] = 0;
+    
     
     // int timeElapsed = masterTime;
     // int time = masterTime;
@@ -74,7 +72,6 @@ int main(int argc, char *argv[])
             printf("This is a Bop-It game!\n");
             printf("Press the Triangle button to begin!\n");
             time= time-1;
-
         }
 
         scanf("%d, %d, %d, %d, %d", &controllerTime, &inputButton[0], &inputButton[1], &inputButton[2], &inputButton[3]);
@@ -95,6 +92,7 @@ int main(int argc, char *argv[])
         if(tempNonStop-250>nonStopTime){
             if(inputButton[0]==correctButton[0] && inputButton[1]==correctButton[1] && inputButton[2]==correctButton[2]&& inputButton[3]==correctButton[3]){
                 printf("\n");
+
                 random = rand()%4;
 
                 if (random == 0){
@@ -132,7 +130,6 @@ int main(int argc, char *argv[])
             
         }
         
-        
         nonStopTime = nonStopMaster - controllerTime;
         currentTime = time - (controllerTime - tempControllerTime);
         // printf("Time remaining %d\n", currentTime);
@@ -141,7 +138,7 @@ int main(int argc, char *argv[])
             break;
         }
     }
-    printf("You lose!\nYou made it through %d rounds!", count);
+    printf("You lose!\nYou made it through %d rounds!\n", count);
     
     return 0;
 }
